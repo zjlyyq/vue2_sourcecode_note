@@ -160,6 +160,7 @@ export function defineReactive (
     get: function reactiveGetter () {
       const value = getter ? getter.call(obj) : val
       if (Dep.target) {
+        // 将 watcher绑定到此 Dep 上 ：Dep.target.addDep(this)
         dep.depend()
         if (childOb) {
           childOb.dep.depend()
